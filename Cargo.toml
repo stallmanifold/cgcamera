@@ -8,4 +8,4 @@ edition = "2018"
 name = "cgcamera"
 
 [dependencies]
-
+simple_cgmath = { git = "https://github.com/stallmanifold/simple-cgmath" }
