@@ -13,7 +13,7 @@ pub struct PerspectiveCamera {
     pub aspect: f32,
 
     // Camera kinematics.
-    pub pos: Vector3,
+    pub origin: Vector3,
     pub fwd: Vector4,
     pub rgt: Vector4,
     pub up: Vector4,
@@ -44,7 +44,7 @@ impl PerspectiveCamera {
             fov: fov,
             aspect: aspect,
 
-            pos: cam_pos,
+            origin: cam_pos,
             fwd: fwd,
             rgt: rgt,
             up: up,
@@ -64,7 +64,7 @@ impl fmt::Display for PerspectiveCamera {
         writeln!(f, "near: {}", self.near).unwrap();
         writeln!(f, "far: {}", self.far).unwrap();
         writeln!(f, "aspect: {}", self.aspect).unwrap();
-        writeln!(f, "pos: {}", self.pos).unwrap();
+        writeln!(f, "origin: {}", self.origin).unwrap();
         writeln!(f, "fwd: {}", self.fwd).unwrap();
         writeln!(f, "rgt: {}", self.rgt).unwrap();
         writeln!(f, "up: {}", self.up).unwrap();
