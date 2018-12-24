@@ -134,3 +134,24 @@ impl PerspectiveCamera {
         }
     }
 }
+
+impl fmt::Display for PerspectiveCamera {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        writeln!(f, "Camera Model:").unwrap();
+        writeln!(f, "left: {}", self.left).unwrap();
+        writeln!(f, "right: {}", self.right).unwrap();
+        writeln!(f, "bottom: {}", self.bottom).unwrap();
+        writeln!(f, "top: {}", self.top).unwrap();
+        writeln!(f, "near: {}", self.near).unwrap();
+        writeln!(f, "far: {}", self.far).unwrap();
+        writeln!(f, "origin: {}", self.origin).unwrap();
+        writeln!(f, "fwd: {}", self.fwd).unwrap();
+        writeln!(f, "rgt: {}", self.rgt).unwrap();
+        writeln!(f, "up: {}", self.up).unwrap();
+        writeln!(f, "axis: {}", self.axis).unwrap();
+        writeln!(f, "proj_mat: {}", self.proj_mat).unwrap();
+        writeln!(f, "trans_mat: {}", self.trans_mat).unwrap();
+        writeln!(f, "rot_mat: {}", self.rot_mat).unwrap();
+        writeln!(f, "view_mat: {}", self.view_mat)
+    }
+}
