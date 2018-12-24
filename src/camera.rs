@@ -77,3 +77,60 @@ impl fmt::Display for PerspectiveFovCamera {
 }
 
 
+#[derive(Clone, Debug)]
+pub struct PerspectiveCamera {
+    // Camera frustum parameters.
+    pub left: f32,
+    pub right: f32,
+    pub bottom: f32,
+    pub top: f32,
+    pub near: f32,
+    pub far: f32,
+
+    // Camera kinematics.
+    pub origin: Vector3,
+    pub fwd: Vector4,
+    pub rgt: Vector4,
+    pub up: Vector4,
+    pub axis: Quaternion,
+
+    // Camera matrices.
+    pub proj_mat: Matrix4,
+    pub trans_mat: Matrix4,
+    pub rot_mat: Matrix4,
+    pub view_mat: Matrix4,
+}
+
+impl PerspectiveCamera {
+    pub fn new(
+        near: f32, far: f32, bottom: f32, top: f32, left: f32, right: f32,
+        cam_pos: Vector3,
+        fwd: Vector4, rgt: Vector4, up: Vector4, axis: Vector3) -> PerspectiveCamera {
+
+        let proj_mat = math::frustum((left, right, bottom, top, near, far));
+        let trans_mat = Matrix4::from_translation(cam_pos);
+        let axis_quat = Quaternion::from_sv(0.0, axis);
+        let rot_mat = Matrix4::from(axis_quat);
+        let view_mat = rot_mat * trans_mat;
+
+        PerspectiveCamera {
+            left: left,
+            right: right,
+            bottom: bottom,
+            top: top,
+            near: near,
+            far: far,
+
+            origin: cam_pos,
+            fwd: fwd,
+            rgt: rgt,
+            up: up,
+            axis: axis_quat,
+
+            proj_mat: proj_mat,
+            trans_mat: trans_mat,
+            rot_mat: rot_mat,
+            view_mat: view_mat,
+        }
+    }
+}
