@@ -5,7 +5,7 @@ use std::fmt;
 
 
 #[derive(Clone, Debug)]
-pub struct PerspectiveCamera {
+pub struct PerspectiveFovCamera {
     // Camera parameters.
     pub near: f32,
     pub far: f32,
@@ -26,11 +26,11 @@ pub struct PerspectiveCamera {
     pub view_mat: Matrix4,
 }
 
-impl PerspectiveCamera {
+impl PerspectiveFovCamera {
     pub fn new(
         near: f32, far: f32, fov: f32, aspect: f32,
         cam_pos: Vector3,
-        fwd: Vector4, rgt: Vector4, up: Vector4, axis: Vector3) -> PerspectiveCamera {
+        fwd: Vector4, rgt: Vector4, up: Vector4, axis: Vector3) -> PerspectiveFovCamera {
 
         let proj_mat = math::perspective((fov, aspect, near, far));
         let trans_mat = Matrix4::from_translation(cam_pos);
@@ -38,7 +38,7 @@ impl PerspectiveCamera {
         let rot_mat = Matrix4::from(axis_quat);
         let view_mat = rot_mat * trans_mat;
 
-        PerspectiveCamera {
+        PerspectiveFovCamera {
             near: near,
             far: far,
             fov: fov,
@@ -58,7 +58,7 @@ impl PerspectiveCamera {
     }
 }
 
-impl fmt::Display for PerspectiveCamera {
+impl fmt::Display for PerspectiveFovCamera {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         writeln!(f, "Camera Model:").unwrap();
         writeln!(f, "near: {}", self.near).unwrap();
