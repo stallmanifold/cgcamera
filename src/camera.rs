@@ -360,12 +360,12 @@ mod orthographic_camera_tests {
     }
 
     #[test]
-    fn test_orthographic_camera_should_map_points_to_canonical_view_volume() {
+    fn test_orthographic_camera_should_map_points_inside_frustum_inside_canonical_view_volume() {
         let left = -4.0;
         let right = 4.0;
         let bottom = -4.0;
         let top = 4.0;
-        let near = 4.0;
+        let near = 0.1;
         let far = -4.0;
         let frustum = Frustum::new(left, right, bottom, top, near, far);
 
@@ -383,7 +383,7 @@ mod orthographic_camera_tests {
         let p_cvv = cgmath::vec3((p_cvv.x, p_cvv.y, p_cvv.z));
         let cvv = AxisAlignedBoundingBox::unit_aabb();
 
-        assert!(cvv.contains(p_cvv), "p_wor = {}; p_cvv = {}", p_wor, p_cvv);
+        assert!(cvv.contains(p_cvv), "p_wor = {}; p_cam = {}; p_cvv = {}", p_wor, p_cam, p_cvv);
     }
 }
 
