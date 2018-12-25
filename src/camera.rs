@@ -23,6 +23,7 @@ impl FrustumFov {
     }
 }
 
+#[derive(Copy, Clone, Debug)]
 pub struct CameraAttitude {
     pub origin: Vector3,
     pub forward: Vector4,
