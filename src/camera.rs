@@ -97,6 +97,32 @@ impl fmt::Display for PerspectiveFovCamera {
 }
 
 
+pub struct Frustum {
+    pub left: f32,
+    pub right: f32,
+    pub bottom: f32,
+    pub top: f32,
+    pub near: f32,
+    pub far: f32,
+}
+
+impl Frustum {
+    pub fn new(
+        left: f32, right: f32,
+        bottom: f32, top: f32, near: f32, far: f32) -> Frustum {
+
+        Frustum {
+            left: left,
+            right: right,
+            bottom: bottom,
+            top: top,
+            near: near,
+            far: far,
+        }
+    }
+}
+
+
 #[derive(Clone, Debug)]
 pub struct PerspectiveCamera {
     // Camera frustum parameters.
