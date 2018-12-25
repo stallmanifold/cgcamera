@@ -71,17 +71,12 @@ pub struct PerspectiveFovCamera {
 }
 
 impl PerspectiveFovCamera {
-    pub fn new(
-        frustum: FrustumFov,
-        cam_pos: Vector3,
-        forward: Vector4, right: Vector4, up: Vector4, axis: Vector3) -> PerspectiveFovCamera {
-
+    pub fn new(frustum: FrustumFov, attitude: CameraAttitude) -> PerspectiveFovCamera {
         let proj_mat = math::perspective(
             (frustum.fov, frustum.aspect, frustum.near, frustum.far)
         );
-        let trans_mat = Matrix4::from_translation(cam_pos);
-        let axis_quat = Quaternion::from_sv(0.0, axis);
-        let rot_mat = Matrix4::from(axis_quat);
+        let trans_mat = Matrix4::from_translation(attitude.origin);
+        let rot_mat = Matrix4::from(attitude.axis);
         let view_mat = rot_mat * trans_mat;
 
         PerspectiveFovCamera {
@@ -90,11 +85,11 @@ impl PerspectiveFovCamera {
             fov: frustum.fov,
             aspect: frustum.aspect,
 
-            origin: cam_pos,
-            forward: forward,
-            right: right,
-            up: up,
-            axis: axis_quat,
+            origin: attitude.origin,
+            forward: attitude.forward,
+            right: attitude.right,
+            up: attitude.up,
+            axis: attitude.axis,
 
             proj_mat: proj_mat,
             trans_mat: trans_mat,
