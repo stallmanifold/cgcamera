@@ -23,6 +23,32 @@ impl FrustumFov {
     }
 }
 
+pub struct CameraAttitude {
+    pub origin: Vector3,
+    pub forward: Vector4,
+    pub right: Vector4,
+    pub up: Vector4,
+    pub axis: Quaternion,
+}
+
+impl CameraAttitude {
+    pub fn new(
+        origin: Vector3,
+        forward: Vector4, right: Vector4, up: Vector4,
+        rotation_axis: Vector3) -> CameraAttitude {
+
+        let axis = Quaternion::from_sv(0.0, rotation_axis);
+
+        CameraAttitude {
+            origin: origin,
+            forward: forward,
+            right: right,
+            up: up,
+            axis: axis,
+        }
+    }
+}
+
 #[derive(Clone, Debug)]
 pub struct PerspectiveFovCamera {
     // Camera parameters.
