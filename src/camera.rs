@@ -247,18 +247,13 @@ pub struct OrthographicCamera {
 }
 
 impl OrthographicCamera {
-    pub fn new(
-        frustum: Frustum,
-        cam_pos: Vector3,
-        forward: Vector4, rgt: Vector4, up: Vector4, axis: Vector3) -> OrthographicCamera {
-
+    pub fn new(frustum: Frustum, attitude: CameraAttitude) -> OrthographicCamera {
         let proj_mat = math::ortho((
             frustum.left, frustum.right,
             frustum.bottom, frustum.top, frustum.near, frustum.far
         ));
-        let trans_mat = Matrix4::from_translation(cam_pos);
-        let axis_quat = Quaternion::from_sv(0.0, axis);
-        let rot_mat = Matrix4::from(axis_quat);
+        let trans_mat = Matrix4::from_translation(attitude.origin);
+        let rot_mat = Matrix4::from(attitude.axis);
         let view_mat = rot_mat * trans_mat;
 
         OrthographicCamera {
@@ -269,11 +264,11 @@ impl OrthographicCamera {
             near: frustum.near,
             far: frustum.far,
 
-            origin: cam_pos,
-            forward: forward,
-            rgt: rgt,
-            up: up,
-            axis: axis_quat,
+            origin: attitude.origin,
+            forward: attitude.forward,
+            rgt: attitude.right,
+            up: attitude.up,
+            axis: attitude.axis,
 
             proj_mat: proj_mat,
             trans_mat: trans_mat,
