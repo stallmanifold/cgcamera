@@ -170,10 +170,7 @@ pub struct PerspectiveCamera {
 }
 
 impl PerspectiveCamera {
-    pub fn new(
-        frustum: Frustum,
-        attitude: CameraAttitude) -> PerspectiveCamera {
-
+    pub fn new(frustum: Frustum, attitude: CameraAttitude) -> PerspectiveCamera {
         let proj_mat = math::frustum(
             (frustum.left, frustum.right,
              frustum.bottom, frustum.top, frustum.near, frustum.far)
