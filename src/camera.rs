@@ -34,12 +34,10 @@ pub struct CameraAttitude {
 
 impl CameraAttitude {
     pub fn new(
-        origin: Vector3,
-        forward: Vector4, right: Vector4, up: Vector4,
-        rotation_axis: Vector3) -> CameraAttitude {
+        origin: Vector3, forward: Vector4,
+        right: Vector4, up: Vector4, rotation_axis: Vector3) -> CameraAttitude {
 
         let axis = Quaternion::from_sv(0.0, rotation_axis);
-
         CameraAttitude {
             origin: origin,
             forward: forward,
