@@ -58,8 +58,8 @@ pub struct PerspectiveFovCamera {
 
     // Camera kinematics.
     pub origin: Vector3,
-    pub fwd: Vector4,
-    pub rgt: Vector4,
+    pub forward: Vector4,
+    pub right: Vector4,
     pub up: Vector4,
     pub axis: Quaternion,
 
@@ -74,7 +74,7 @@ impl PerspectiveFovCamera {
     pub fn new(
         frustum: FrustumFov,
         cam_pos: Vector3,
-        fwd: Vector4, rgt: Vector4, up: Vector4, axis: Vector3) -> PerspectiveFovCamera {
+        forward: Vector4, right: Vector4, up: Vector4, axis: Vector3) -> PerspectiveFovCamera {
 
         let proj_mat = math::perspective(
             (frustum.fov, frustum.aspect, frustum.near, frustum.far)
@@ -91,8 +91,8 @@ impl PerspectiveFovCamera {
             aspect: frustum.aspect,
 
             origin: cam_pos,
-            fwd: fwd,
-            rgt: rgt,
+            forward: forward,
+            right: right,
             up: up,
             axis: axis_quat,
 
@@ -111,8 +111,8 @@ impl fmt::Display for PerspectiveFovCamera {
         writeln!(f, "far: {}", self.far).unwrap();
         writeln!(f, "aspect: {}", self.aspect).unwrap();
         writeln!(f, "origin: {}", self.origin).unwrap();
-        writeln!(f, "fwd: {}", self.fwd).unwrap();
-        writeln!(f, "rgt: {}", self.rgt).unwrap();
+        writeln!(f, "fwd: {}", self.forward).unwrap();
+        writeln!(f, "rgt: {}", self.right).unwrap();
         writeln!(f, "up: {}", self.up).unwrap();
         writeln!(f, "axis: {}", self.axis).unwrap();
         writeln!(f, "proj_mat: {}", self.proj_mat).unwrap();
@@ -162,7 +162,7 @@ pub struct PerspectiveCamera {
 
     // Camera kinematics.
     pub origin: Vector3,
-    pub fwd: Vector4,
+    pub forward: Vector4,
     pub rgt: Vector4,
     pub up: Vector4,
     pub axis: Quaternion,
@@ -178,7 +178,7 @@ impl PerspectiveCamera {
     pub fn new(
         frustum: Frustum,
         cam_pos: Vector3,
-        fwd: Vector4, rgt: Vector4, up: Vector4, axis: Vector3) -> PerspectiveCamera {
+        forward: Vector4, right: Vector4, up: Vector4, axis: Vector3) -> PerspectiveCamera {
 
         let proj_mat = math::frustum(
             (frustum.left, frustum.right,
@@ -198,8 +198,8 @@ impl PerspectiveCamera {
             far: frustum.far,
 
             origin: cam_pos,
-            fwd: fwd,
-            rgt: rgt,
+            forward: forward,
+            rgt: right,
             up: up,
             axis: axis_quat,
 
@@ -221,8 +221,8 @@ impl fmt::Display for PerspectiveCamera {
         writeln!(f, "near: {}", self.near).unwrap();
         writeln!(f, "far: {}", self.far).unwrap();
         writeln!(f, "origin: {}", self.origin).unwrap();
-        writeln!(f, "fwd: {}", self.fwd).unwrap();
-        writeln!(f, "rgt: {}", self.rgt).unwrap();
+        writeln!(f, "fwd: {}", self.forward).unwrap();
+        writeln!(f, "rgt: {}", self.right).unwrap();
         writeln!(f, "up: {}", self.up).unwrap();
         writeln!(f, "axis: {}", self.axis).unwrap();
         writeln!(f, "proj_mat: {}", self.proj_mat).unwrap();
@@ -244,7 +244,7 @@ pub struct OrthographicCamera {
 
     // Camera kinematics.
     pub origin: Vector3,
-    pub fwd: Vector4,
+    pub forward: Vector4,
     pub rgt: Vector4,
     pub up: Vector4,
     pub axis: Quaternion,
@@ -260,7 +260,7 @@ impl OrthographicCamera {
     pub fn new(
         frustum: Frustum,
         cam_pos: Vector3,
-        fwd: Vector4, rgt: Vector4, up: Vector4, axis: Vector3) -> OrthographicCamera {
+        forward: Vector4, rgt: Vector4, up: Vector4, axis: Vector3) -> OrthographicCamera {
 
         let proj_mat = math::ortho((
             frustum.left, frustum.right,
@@ -280,7 +280,7 @@ impl OrthographicCamera {
             far: frustum.far,
 
             origin: cam_pos,
-            fwd: fwd,
+            forward: forward,
             rgt: rgt,
             up: up,
             axis: axis_quat,
@@ -303,7 +303,7 @@ impl fmt::Display for OrthographicCamera {
         writeln!(f, "near: {}", self.near).unwrap();
         writeln!(f, "far: {}", self.far).unwrap();
         writeln!(f, "origin: {}", self.origin).unwrap();
-        writeln!(f, "fwd: {}", self.fwd).unwrap();
+        writeln!(f, "fwd: {}", self.forward).unwrap();
         writeln!(f, "rgt: {}", self.rgt).unwrap();
         writeln!(f, "up: {}", self.up).unwrap();
         writeln!(f, "axis: {}", self.axis).unwrap();
