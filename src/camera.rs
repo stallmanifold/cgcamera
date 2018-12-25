@@ -4,6 +4,7 @@ use cgmath::{Vector3, Vector4, Matrix4, Quaternion};
 use std::fmt;
 
 
+#[derive(Copy, Clone, Debug)]
 pub struct FrustumFov {
     pub near: f32,
     pub far: f32,
@@ -97,6 +98,7 @@ impl fmt::Display for PerspectiveFovCamera {
 }
 
 
+#[derive(Copy, Clone, Debug)]
 pub struct Frustum {
     pub left: f32,
     pub right: f32,
