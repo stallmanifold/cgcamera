@@ -416,10 +416,6 @@ mod perspective_camera_tests {
         let rotation_axis = cgmath::vec3((0.0, 0.0, -1.0));
         let attitude = CameraAttitude::new(origin, forward, right, up, rotation_axis);
 
-        let forward3 = cgmath::vec3((0.0, 0.0, -1.0));
-        let right3 = cgmath::vec3((1.0, 0.0, 0.0));
-        let up3 = cgmath::vec3((0.0, 1.0, 0.0));
-
         let near = 0.1;
         let far = 100.0;
         let fovy = 67.0; // degrees
