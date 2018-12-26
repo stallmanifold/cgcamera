@@ -49,6 +49,20 @@ impl Frustum {
     }
 }
 
+impl From<FrustumFov> for Frustum {
+    fn from(frustum_fov: FrustumFov) -> Frustum {
+        let fovy_rad = frustum_fov.fov * cgmath::ONE_DEG_IN_RAD;
+        let bottom = -frustum_fov.far * f32::tan(fovy_rad / 2.0);
+        let top = frustum_fov.far * f32::tan(fovy_rad / 2.0);
+        let left = -frustum_fov.aspect * top;
+        let right = frustum_fov.aspect * top;
+        let near = frustum_fov.near;
+        let far = frustum_fov.far;
+
+        Frustum::new(left, right, bottom, top, near, far)
+    }
+}
+
 #[derive(Copy, Clone, Debug)]
 pub struct CameraAttitude {
     pub origin: Vector3,
@@ -412,12 +426,7 @@ mod perspective_camera_tests {
         let fovy_rad = fovy * cgmath::ONE_DEG_IN_RAD;
         let aspect = 720.0 / 480.0;
         let frustum_fov = FrustumFov::new(near, far, fovy, aspect);
-
-        let bottom = -far * f32::tan(fovy_rad / 2.0);
-        let top = far * f32::tan(fovy_rad / 2.0);
-        let left = -aspect * top;
-        let right = aspect * top;
-        let frustum_box = Frustum::new(left, right, bottom, top, near, far);
+        let frustum_box = frustum_fov.into();
 
         let persp_box = PerspectiveCamera::new(frustum_box, attitude);
         let persp_fov = PerspectiveFovCamera::new(frustum_fov, attitude);
