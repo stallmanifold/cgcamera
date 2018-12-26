@@ -387,3 +387,43 @@ mod orthographic_camera_tests {
     }
 }
 
+#[cfg(test)]
+mod perspective_camera_tests {
+    use super::{
+        CameraAttitude, Frustum, FrustumFov, PerspectiveCamera, PerspectiveFovCamera
+    };
+
+
+    #[test]
+    fn test_fov_and_frustum_should_yield_same_camera_model() {
+        let origin = cgmath::vec3((0.0, 0.0, 5.0));
+        let forward = cgmath::vec4((0.0, 0.0, -1.0, 0.0));
+        let right = cgmath::vec4((1.0, 0.0, 0.0, 0.0));
+        let up = cgmath::vec4((0.0, 1.0, 0.0, 0.0));
+        let rotation_axis = cgmath::vec3((0.0, 0.0, -1.0));
+        let attitude = CameraAttitude::new(origin, forward, right, up, rotation_axis);
+
+        let forward3 = cgmath::vec3((0.0, 0.0, -1.0));
+        let right3 = cgmath::vec3((1.0, 0.0, 0.0));
+        let up3 = cgmath::vec3((0.0, 1.0, 0.0));
+
+        let near = 0.1;
+        let far = 100.0;
+        let fov = 67.0;
+        let aspect = 720.0 / 480.0;
+        let frustum_fov = FrustumFov::new(near, far, fov, aspect);
+
+        let p_center = far;
+        let left = -far * f32::tan(fov / 2.0);
+        let right = far * f32::tan(fov / 2.0);
+        let bottom = -far;
+        let top = far;
+        let frustum_box = Frustum::new(left, right, bottom, top, near, far);
+
+        let persp_box = PerspectiveCamera::new(frustum_box, attitude);
+        let persp_fov = PerspectiveFovCamera::new(frustum_fov, attitude);
+
+        assert_eq!(persp_box.view_mat, persp_fov.view_mat);
+        assert_eq!(persp_box.proj_mat, persp_fov.proj_mat);
+    }
+}
