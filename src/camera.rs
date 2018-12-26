@@ -24,6 +24,32 @@ impl FrustumFov {
 }
 
 #[derive(Copy, Clone, Debug)]
+pub struct Frustum {
+    pub left: f32,
+    pub right: f32,
+    pub bottom: f32,
+    pub top: f32,
+    pub near: f32,
+    pub far: f32,
+}
+
+impl Frustum {
+    pub fn new(
+        left: f32, right: f32,
+        bottom: f32, top: f32, near: f32, far: f32) -> Frustum {
+
+        Frustum {
+            left: left,
+            right: right,
+            bottom: bottom,
+            top: top,
+            near: near,
+            far: far,
+        }
+    }
+}
+
+#[derive(Copy, Clone, Debug)]
 pub struct CameraAttitude {
     pub origin: Vector3,
     pub forward: Vector4,
@@ -114,33 +140,6 @@ impl fmt::Display for PerspectiveFovCamera {
         writeln!(f, "trans_mat: {}", self.trans_mat).unwrap();
         writeln!(f, "rot_mat: {}", self.rot_mat).unwrap();
         writeln!(f, "view_mat: {}", self.view_mat)
-    }
-}
-
-
-#[derive(Copy, Clone, Debug)]
-pub struct Frustum {
-    pub left: f32,
-    pub right: f32,
-    pub bottom: f32,
-    pub top: f32,
-    pub near: f32,
-    pub far: f32,
-}
-
-impl Frustum {
-    pub fn new(
-        left: f32, right: f32,
-        bottom: f32, top: f32, near: f32, far: f32) -> Frustum {
-
-        Frustum {
-            left: left,
-            right: right,
-            bottom: bottom,
-            top: top,
-            near: near,
-            far: far,
-        }
     }
 }
 
