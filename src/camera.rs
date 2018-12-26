@@ -409,15 +409,15 @@ mod perspective_camera_tests {
 
         let near = 0.1;
         let far = 100.0;
-        let fov = 67.0 // degrees;
-        let fov_rad = fov * cgmath::ONE_DEG_IN_RAD;
+        let fovy = 67.0; // degrees
+        let fovy_rad = fovy * cgmath::ONE_DEG_IN_RAD;
         let aspect = 720.0 / 480.0;
-        let frustum_fov = FrustumFov::new(near, far, fov, aspect);
+        let frustum_fov = FrustumFov::new(near, far, fovy, aspect);
 
-        let left = -far * f32::tan(fov_rad / 2.0);
-        let right = far * f32::tan(fov_rad / 2.0);
-        let bottom = right / aspect;
-        let top = -right / aspect;
+        let bottom = -far * f32::tan(fovy_rad / 2.0);
+        let top = far * f32::tan(fovy_rad / 2.0);
+        let left = -aspect * top;
+        let right = aspect * top;
         let frustum_box = Frustum::new(left, right, bottom, top, near, far);
 
         let persp_box = PerspectiveCamera::new(frustum_box, attitude);
