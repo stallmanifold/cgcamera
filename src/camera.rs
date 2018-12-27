@@ -88,7 +88,7 @@ impl CameraAttitude {
     }
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, PartialEq)]
 pub struct PerspectiveFovCamera {
     // Camera parameters.
     pub near: f32,
@@ -158,7 +158,7 @@ impl fmt::Display for PerspectiveFovCamera {
 }
 
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, PartialEq)]
 pub struct PerspectiveCamera {
     // Camera frustum parameters.
     pub left: f32,
@@ -379,7 +379,7 @@ mod orthographic_camera_tests {
         let bottom = -4.0;
         let top = 4.0;
         let near = 0.1;
-        let far = -4.0;
+        let far = 4.0;
         let frustum = Frustum::new(left, right, bottom, top, near, far);
 
         let origin = cgmath::vec3((0.0, 0.0, 5.0));
@@ -390,7 +390,7 @@ mod orthographic_camera_tests {
         let attitude = CameraAttitude::new(origin, forward, right, up, rotation_axis);
         let camera = OrthographicCamera::new(frustum, attitude);
 
-        let p_wor = cgmath::vec4((-3.0, 3.0, 3.0, 1.0));
+        let p_wor = cgmath::vec4((-3.0, 3.0, -2.0, 1.0));
         let p_cam = camera.view_mat * p_wor;
         let p_cvv = camera.proj_mat * p_cam;
         let p_cvv = cgmath::vec3((p_cvv.x, p_cvv.y, p_cvv.z));
