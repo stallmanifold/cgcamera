@@ -316,7 +316,7 @@ impl fmt::Display for OrthographicCamera {
 #[cfg(test)]
 mod orthographic_camera_tests {
     use super::{CameraAttitude, Frustum, OrthographicCamera};
-    use cgmath::{Vector3, Vector4, Matrix4};
+    use cgmath::{Vector3, Matrix4};
 
     struct AxisAlignedBoundingBox {
         left: f32,
