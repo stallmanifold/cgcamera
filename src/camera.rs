@@ -543,9 +543,8 @@ mod perspective_camera_tests {
 #[cfg(test)]
 mod perspective_fov_camera_tests {
     use cgmath::Vector3;
-    use super::{
-        CameraAttitude, Frustum, FrustumFov, PerspectiveCamera, PerspectiveFovCamera
-    };
+    use super::{CameraAttitude, FrustumFov, PerspectiveFovCamera};
+
 
     struct AxisAlignedBoundingBox {
         left: f32,
