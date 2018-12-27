@@ -512,7 +512,7 @@ mod perspective_camera_tests {
     }
 
     #[test]
-    fn test_orthographic_camera_should_map_points_outside_frustum_outside_canonical_view_volume() {
+    fn test_perspective_camera_should_map_points_outside_frustum_outside_canonical_view_volume() {
         let left = -4.0;
         let right = 4.0;
         let bottom = -4.0;
