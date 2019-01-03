@@ -613,12 +613,11 @@ mod perspective_fov_camera_tests {
         let attitude = CameraAttitude::new(origin, forward, right, up, rotation_axis);
         let camera = PerspectiveFovCamera::new(frustum_fov, attitude);
 
-        let p_wor = cgmath::vec4((300.0, 300.0, 300.0, 1.0));
-        let p_cam = camera.view_mat * p_wor;
+        let p_cam = cgmath::vec4((300.0, 300.0, 300.0, 1.0));
         let p_cvv = camera.proj_mat * p_cam;
         let p_cvv = cgmath::vec3((p_cvv.x, p_cvv.y, p_cvv.z));
         let cvv = AxisAlignedBoundingBox::unit_aabb();
 
-        assert!(!cvv.contains(p_cvv), "p_wor = {}; p_cam = {}; p_cvv = {}", p_wor, p_cam, p_cvv);
+        assert!(!cvv.contains(p_cvv), "p_cam = {}; p_cvv = {}", p_cam, p_cvv);
     }
 }
