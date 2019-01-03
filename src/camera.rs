@@ -472,10 +472,9 @@ mod perspective_camera_tests {
         let near = 0.1;
         let far = 100.0;
         let fovy = 67.0; // degrees
-        let fovy_rad = fovy * cgmath::ONE_DEG_IN_RAD;
         let aspect = 720.0 / 480.0;
         let frustum_fov = FrustumFov::new(near, far, fovy, aspect);
-        let frustum_box = frustum_fov.into();
+        let frustum_box = Frustum::from(frustum_fov);
 
         let persp_box = PerspectiveCamera::new(frustum_box, attitude);
         let persp_fov = PerspectiveFovCamera::new(frustum_fov, attitude);
@@ -576,7 +575,6 @@ mod perspective_fov_camera_tests {
         let near = 0.1;
         let far = 100.0;
         let fovy = 67.0; // degrees
-        let fovy_rad = fovy * cgmath::ONE_DEG_IN_RAD;
         let aspect = 720.0 / 480.0;
         let frustum_fov = FrustumFov::new(near, far, fovy, aspect);
 
