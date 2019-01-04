@@ -235,7 +235,7 @@ fn orthographic_camera_y_axis() -> OrthographicCamera {
     let forward = cgmath::vec4((0.0, 1.0, 0.0, 0.0));
     let rgt = cgmath::vec4((-1.0, 0.0, 0.0, 0.0));
     let up = cgmath::vec4((0.0, 0.0, 1.0, 0.0));
-    let rotation_axis = cgmath::vec3((-1.0, 0.0, 0.0));
+    let rotation_axis = cgmath::vec3((0.0, -1.0, 0.0));
     let attitude = CameraAttitude::new(origin, forward, rgt, up, rotation_axis);
     let camera = OrthographicCamera::new(frustum, attitude);
 
@@ -244,7 +244,7 @@ fn orthographic_camera_y_axis() -> OrthographicCamera {
 
 #[test]
 fn test_orthographic_camera_y_axis_trans_mat() {
-    let camera = orthographic_camera_x_axis();
+    let camera = orthographic_camera_y_axis();
     let trans_mat = Matrix4::new(
         1.0,  0.0, 0.0, 0.0,
         0.0,  1.0, 0.0, 0.0,
@@ -257,7 +257,7 @@ fn test_orthographic_camera_y_axis_trans_mat() {
 
 #[test]
 fn test_orthographic_camera_y_axis_rot_mat() {
-    let camera = orthographic_camera_x_axis();
+    let camera = orthographic_camera_y_axis();
     let rot_mat = Matrix4::new(
         -1.0,  0.0, 0.0, 0.0,
          0.0, -1.0, 0.0, 0.0,
@@ -270,7 +270,7 @@ fn test_orthographic_camera_y_axis_rot_mat() {
 
 #[test]
 fn test_orthographic_camera_y_axis_view_mat() {
-    let camera = orthographic_camera_x_axis();
+    let camera = orthographic_camera_y_axis();
     let view_mat = Matrix4::new(
         -1.0,  0.0,  0.0,  0.0,
          0.0, -1.0,  0.0,  0.0,
@@ -283,7 +283,7 @@ fn test_orthographic_camera_y_axis_view_mat() {
 
 #[test]
 fn test_orthographic_camera_y_axis_proj_mat() {
-    let camera = orthographic_camera_x_axis();
+    let camera = orthographic_camera_y_axis();
     let proj_mat = Matrix4::new(
         0.25,  0.0,   0.0, 0.0,
         0.0,  0.25,   0.0, 0.0,
