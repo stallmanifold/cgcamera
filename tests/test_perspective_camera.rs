@@ -67,10 +67,10 @@ fn test_perspective_camera_z_axis_view_mat() {
 fn test_perspective_camera_z_axis_proj_mat() {
     let camera = perspective_camera_z_axis();
     let proj_mat = Matrix4::new(
-        1.0,   0.0,  0.0,  0.0,
-        0.0,   1.0,  0.0,  0.0,
-        0.0,   0.0,  0.0, -4.0,
-        0.0,   0.0,  1.0,  0.0
+        1.0,  0.0, 0.0,  0.0,
+        0.0,  1.0, 0.0,  0.0,
+        0.0,  0.0, 1.0,  0.0,
+        0.0,  0.0, 0.0, -4.0
     );
 
     assert_eq!(camera.proj_mat, proj_mat);
