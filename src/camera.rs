@@ -311,15 +311,3 @@ impl fmt::Display for OrthographicCamera {
         writeln!(f, "view_mat: {}", self.view_mat)
     }
 }
-
-
-#[cfg(test)]
-mod perspective_camera_tests {
-
-}
-
-
-#[cfg(test)]
-mod perspective_fov_camera_tests {
-
-}
