@@ -99,7 +99,7 @@ fn orthographic_camera_z_axis() -> OrthographicCamera {
 }
 
 #[test]
-fn test_orthographic_camera_z_axis_tans_mat() {
+fn test_orthographic_camera_z_axis_trans_mat() {
     let camera = orthographic_camera_z_axis();
     let trans_mat = Matrix4::new(
         1.0, 0.0,  0.0, 0.0,
