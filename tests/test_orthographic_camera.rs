@@ -56,10 +56,10 @@ fn test_orthographic_camera_mirror_mat_trans_mat() {
 fn test_orthographic_camera_mirror_mat_rot_mat() {
     let camera = orthographic_mirror_matrix_camera_model();
     let rot_mat = Matrix4::new(
-        1.0, 0.0, 0.0, 0.0,
-        0.0, 1.0, 0.0, 0.0,
-        0.0, 0.0, 1.0, 0.0,
-        0.0, 0.0, 0.0, 1.0
+        -1.0,  0.0, 0.0, 0.0,
+         0.0, -1.0, 0.0, 0.0,
+         0.0,  0.0, 1.0, 0.0,
+         0.0,  0.0, 0.0, 1.0
     );
 
     assert_eq!(camera.rot_mat, rot_mat);
