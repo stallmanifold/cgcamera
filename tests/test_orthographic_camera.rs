@@ -187,10 +187,10 @@ fn test_orthographic_camera_x_axis_trans_mat() {
 fn test_orthographic_camera_x_axis_rot_mat() {
     let camera = orthographic_camera_x_axis();
     let rot_mat = Matrix4::new(
-        -1.0,  0.0, 0.0, 0.0,
-         0.0, -1.0, 0.0, 0.0,
-         0.0,  0.0, 1.0, 0.0,
-         0.0,  0.0, 0.0, 1.0
+         1.0,  0.0,  0.0, 0.0,
+         0.0, -1.0,  0.0, 0.0,
+         0.0,  0.0, -1.0, 0.0,
+         0.0,  0.0,  0.0, 1.0
     );
 
     assert_eq!(camera.rot_mat, rot_mat);
@@ -200,9 +200,9 @@ fn test_orthographic_camera_x_axis_rot_mat() {
 fn test_orthographic_camera_x_axis_view_mat() {
     let camera = orthographic_camera_x_axis();
     let view_mat = Matrix4::new(
-        -1.0,  0.0,  0.0,  0.0,
+         1.0,  0.0,  0.0,  0.0,
          0.0, -1.0,  0.0,  0.0,
-         0.0,  0.0,  1.0,  0.0,
+         0.0,  0.0, -1.0,  0.0,
         -5.0,  0.0,  0.0,  1.0
     );
 
@@ -259,10 +259,10 @@ fn test_orthographic_camera_y_axis_trans_mat() {
 fn test_orthographic_camera_y_axis_rot_mat() {
     let camera = orthographic_camera_y_axis();
     let rot_mat = Matrix4::new(
-        -1.0,  0.0, 0.0, 0.0,
-         0.0, -1.0, 0.0, 0.0,
-         0.0,  0.0, 1.0, 0.0,
-         0.0,  0.0, 0.0, 1.0
+        -1.0, 0.0,  0.0, 0.0,
+         0.0, 1.0,  0.0, 0.0,
+         0.0, 0.0, -1.0, 0.0,
+         0.0, 0.0,  0.0, 1.0
     );
 
     assert_eq!(camera.rot_mat, rot_mat);
@@ -273,8 +273,8 @@ fn test_orthographic_camera_y_axis_view_mat() {
     let camera = orthographic_camera_y_axis();
     let view_mat = Matrix4::new(
         -1.0,  0.0,  0.0,  0.0,
-         0.0, -1.0,  0.0,  0.0,
-         0.0,  0.0,  1.0,  0.0,
+         0.0,  1.0,  0.0,  0.0,
+         0.0,  0.0, -1.0,  0.0,
          0.0, -5.0,  0.0,  1.0
     );
 
