@@ -139,10 +139,10 @@ fn test_perspective_camera_x_axis_view_mat() {
 fn test_perspective_camera_x_axis_proj_mat() {
     let camera = perspective_camera_x_axis();
     let proj_mat = Matrix4::new(
-        0.25,  0.0,   0.0, 0.0,
-        0.0,  0.25,   0.0, 0.0,
-        0.0,   0.0, -0.25, 0.0,
-        0.0,   0.0,   0.0, 1.0
+        1.0,  0.0,  0.0,  0.0,
+        0.0,  1.0,  0.0,  0.0,
+        0.0,  0.0,  0.0,  1.0,
+        0.0,  0.0, -4.0,  0.0
     );
 
     assert_eq!(camera.proj_mat, proj_mat);
