@@ -1,5 +1,5 @@
 use cgcamera::{CameraAttitude, Frustum, OrthographicCamera};
-use cgmath::{Vector3, Matrix4};
+use cgmath::Matrix4;
 
 
 fn orthographic_mirror_matrix_camera_model() -> OrthographicCamera {
