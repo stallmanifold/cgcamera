@@ -141,7 +141,7 @@ impl PerspectiveFovCamera {
 
 impl fmt::Display for PerspectiveFovCamera {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        writeln!(f, "Camera Model:").unwrap();
+        writeln!(f, "model: Perspective FOV pinhole camera").unwrap();
         writeln!(f, "near: {}", self.near).unwrap();
         writeln!(f, "far: {}", self.far).unwrap();
         writeln!(f, "aspect: {}", self.aspect).unwrap();
@@ -216,7 +216,7 @@ impl PerspectiveCamera {
 
 impl fmt::Display for PerspectiveCamera {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        writeln!(f, "Camera Model:").unwrap();
+        writeln!(f, "model: Perspective pinhole camera").unwrap();
         writeln!(f, "left: {}", self.left).unwrap();
         writeln!(f, "right: {}", self.right).unwrap();
         writeln!(f, "bottom: {}", self.bottom).unwrap();
@@ -293,7 +293,7 @@ impl OrthographicCamera {
 
 impl fmt::Display for OrthographicCamera {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        writeln!(f, "Camera Model:").unwrap();
+        writeln!(f, "model: Orthographic pinhole camera").unwrap();
         writeln!(f, "left: {}", self.left).unwrap();
         writeln!(f, "right: {}", self.right).unwrap();
         writeln!(f, "bottom: {}", self.bottom).unwrap();
