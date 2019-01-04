@@ -65,59 +65,6 @@ fn test_unit_viewing_volume_projection_matrix_should_be_mirroring_matrix() {
 }
 
 
-#[test]
-fn test_orthographic_camera_should_map_points_inside_frustum_inside_canonical_view_volume() {
-    let left = -4.0;
-    let right = 4.0;
-    let bottom = -4.0;
-    let top = 4.0;
-    let near = 0.1;
-    let far = 4.0;
-    let frustum = Frustum::new(left, right, bottom, top, near, far);
-
-    let origin = cgmath::vec3((0.0, 0.0, 5.0));
-    let forward = cgmath::vec4((0.0, 0.0, -1.0, 0.0));
-    let right = cgmath::vec4((1.0, 0.0, 0.0, 0.0));
-    let up = cgmath::vec4((0.0, 1.0, 0.0, 0.0));
-    let rotation_axis = cgmath::vec3((0.0, 0.0, -1.0));
-    let attitude = CameraAttitude::new(origin, forward, right, up, rotation_axis);
-    let camera = OrthographicCamera::new(frustum, attitude);
-
-    let p_cam = cgmath::vec4((-3.0, 3.0, -3.0, 1.0));
-    let p_cvv = camera.proj_mat * p_cam;
-    let p_cvv = cgmath::vec3((p_cvv.x, p_cvv.y, p_cvv.z));
-    let cvv = AxisAlignedBoundingBox::unit_aabb();
-
-    assert!(cvv.contains(p_cvv), "p_cam = {}; p_cvv = {}", p_cam, p_cvv);
-}
-
-#[test]
-fn test_orthographic_camera_should_map_points_outside_frustum_outside_canonical_view_volume() {
-    let left = -4.0;
-    let right = 4.0;
-    let bottom = -4.0;
-    let top = 4.0;
-    let near = 0.1;
-    let far = 4.0;
-    let frustum = Frustum::new(left, right, bottom, top, near, far);
-
-    let origin = cgmath::vec3((0.0, 0.0, 5.0));
-    let forward = cgmath::vec4((0.0, 0.0, -1.0, 0.0));
-    let right = cgmath::vec4((1.0, 0.0, 0.0, 0.0));
-    let up = cgmath::vec4((0.0, 1.0, 0.0, 0.0));
-    let rotation_axis = cgmath::vec3((0.0, 0.0, -1.0));
-    let attitude = CameraAttitude::new(origin, forward, right, up, rotation_axis);
-    let camera = OrthographicCamera::new(frustum, attitude);
-
-    let p_cam = cgmath::vec4((300.0, 300.0, 300.0, 1.0));
-    let p_cvv = camera.proj_mat * p_cam;
-    let p_cvv = cgmath::vec3((p_cvv.x, p_cvv.y, p_cvv.z));
-    let cvv = AxisAlignedBoundingBox::unit_aabb();
-
-    assert!(!cvv.contains(p_cvv), "p_cam = {}; p_cvv = {}", p_cam, p_cvv);
-}
-
-
 fn orthographic_camera_z_axis() -> OrthographicCamera {
     let left = -4.0;
     let right = 4.0;
