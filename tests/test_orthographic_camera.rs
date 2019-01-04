@@ -128,10 +128,10 @@ fn test_orthographic_camera_z_axis_rot_mat() {
 fn test_orthographic_camera_z_axis_view_mat() {
     let camera = orthographic_camera_z_axis();
     let view_mat = Matrix4::new(
-        1.0, 0.0,  0.0,  0.0,
-        0.0, 1.0,  0.0,  0.0,
-        0.0, 0.0,  1.0,  0.0,
-        0.0, 0.0, -5.0,  1.0
+        -1.0,  0.0,  0.0,  0.0,
+         0.0, -1.0,  0.0,  0.0,
+         0.0,  0.0,  1.0,  0.0,
+         0.0,  0.0, -5.0,  1.0
     );
 
     assert_eq!(camera.view_mat, view_mat);
