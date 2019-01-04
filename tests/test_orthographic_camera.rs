@@ -2,31 +2,6 @@ use cgcamera::{CameraAttitude, Frustum, OrthographicCamera};
 use cgmath::{Vector3, Matrix4};
 
 
-struct AxisAlignedBoundingBox {
-    left: f32,
-    right: f32,
-    bottom: f32,
-    top: f32,
-    near: f32,
-    far: f32,
-}
-
-impl AxisAlignedBoundingBox {
-    fn new(left: f32, right: f32, bottom: f32, top: f32, near: f32, far: f32) -> Self {
-        Self { left, right, bottom, top, near, far }
-    }
-
-    fn contains(&self, point: Vector3) -> bool {
-        (point.x >= self.left) && (point.x <= self.right) &&
-            (point.y >= self.bottom) && (point.y <= self.top) &&
-            (point.z >= self.far && point.z <= self.near)
-    }
-
-    fn unit_aabb() -> Self {
-        Self::new(-1.0, 1.0, -1.0, 1.0, 1.0, -1.0)
-    }
-}
-
 fn orthographic_mirror_matrix_camera_model() -> OrthographicCamera {
     let left = -1.0;
     let right = 1.0;
