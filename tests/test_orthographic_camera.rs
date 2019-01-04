@@ -34,11 +34,49 @@ fn mirror_mat() -> Matrix4 {
 #[test]
 fn test_unit_viewing_volume_projection_matrix_should_be_mirroring_matrix() {
     let camera = orthographic_mirror_matrix_camera_model();
-    let mirror_mat = mirror_mat();
+    let proj_mat = mirror_mat();
 
-    assert_eq!(camera.proj_mat, mirror_mat);
+    assert_eq!(camera.proj_mat, proj_mat);
 }
 
+#[test]
+fn test_orthographic_camera_mirror_mat_trans_mat() {
+    let camera = orthographic_mirror_matrix_camera_model();
+    let trans_mat = Matrix4::new(
+        1.0, 0.0,  0.0, 0.0,
+        0.0, 1.0,  0.0, 0.0,
+        0.0, 0.0,  1.0, 0.0,
+        0.0, 0.0, -5.0, 1.0
+    );
+
+    assert_eq!(camera.trans_mat, trans_mat);
+}
+
+#[test]
+fn test_orthographic_camera_mirror_mat_rot_mat() {
+    let camera = orthographic_mirror_matrix_camera_model();
+    let rot_mat = Matrix4::new(
+        1.0, 0.0, 0.0, 0.0,
+        0.0, 1.0, 0.0, 0.0,
+        0.0, 0.0, 1.0, 0.0,
+        0.0, 0.0, 0.0, 1.0
+    );
+
+    assert_eq!(camera.rot_mat, rot_mat);
+}
+
+#[test]
+fn test_orthographic_camera_mirror_mat_view_mat() {
+    let camera = orthographic_mirror_matrix_camera_model();
+    let view_mat = Matrix4::new(
+        1.0, 0.0,  0.0,  0.0,
+        0.0, 1.0,  0.0,  0.0,
+        0.0, 0.0,  1.0,  0.0,
+        0.0, 0.0, -5.0,  1.0
+    );
+
+    assert_eq!(camera.view_mat, view_mat);
+}
 
 fn orthographic_camera_z_axis() -> OrthographicCamera {
     let left = -4.0;
