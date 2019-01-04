@@ -27,8 +27,7 @@ impl AxisAlignedBoundingBox {
     }
 }
 
-#[test]
-fn test_unit_viewing_volume_projection_matrix_should_be_mirroring_matrix() {
+fn orthographic_mirror_matrix_camera_model() -> OrthographicCamera {
     let left = -1.0;
     let right = 1.0;
     let bottom = -1.0;
@@ -45,12 +44,22 @@ fn test_unit_viewing_volume_projection_matrix_should_be_mirroring_matrix() {
     let attitude = CameraAttitude::new(origin, forward, right, up, rotation_axis);
     let camera = OrthographicCamera::new(frustum, attitude);
 
-    let mirror_mat = Matrix4::new(
+    camera
+}
+
+fn mirror_mat() -> Matrix4 {
+    Matrix4::new(
         1.0, 0.0,  0.0, 0.0,
         0.0, 1.0,  0.0, 0.0,
         0.0, 0.0, -1.0, 0.0,
         0.0, 0.0,  0.0, 1.0
-    );
+    )
+}
+
+#[test]
+fn test_unit_viewing_volume_projection_matrix_should_be_mirroring_matrix() {
+    let camera = orthographic_mirror_matrix_camera_model();
+    let mirror_mat = mirror_mat();
 
     assert_eq!(camera.proj_mat, mirror_mat);
 }
