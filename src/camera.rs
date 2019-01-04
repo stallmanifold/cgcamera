@@ -188,7 +188,7 @@ impl PerspectiveCamera {
             frustum.left, frustum.right,
             frustum.bottom, frustum.top, frustum.near, frustum.far
         ));
-        let trans_mat = Matrix4::from_translation(attitude.origin);
+        let trans_mat = Matrix4::from_translation(-attitude.origin);
         let rot_mat = Matrix4::from(attitude.axis);
         let view_mat = rot_mat * trans_mat;
 
