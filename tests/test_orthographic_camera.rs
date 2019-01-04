@@ -72,7 +72,7 @@ fn test_orthographic_camera_mirror_mat_view_mat() {
         1.0, 0.0,  0.0,  0.0,
         0.0, 1.0,  0.0,  0.0,
         0.0, 0.0,  1.0,  0.0,
-        0.0, 0.0,  5.0,  1.0
+        0.0, 0.0, -5.0,  1.0
     );
 
     assert_eq!(camera.view_mat, view_mat);
@@ -131,7 +131,7 @@ fn test_orthographic_camera_z_axis_view_mat() {
         1.0, 0.0,  0.0,  0.0,
         0.0, 1.0,  0.0,  0.0,
         0.0, 0.0,  1.0,  0.0,
-        0.0, 0.0,  5.0,  1.0
+        0.0, 0.0, -5.0,  1.0
     );
 
     assert_eq!(camera.view_mat, view_mat);
@@ -161,8 +161,8 @@ fn orthographic_camera_x_axis() -> OrthographicCamera {
 
     let origin = cgmath::vec3((5.0, 0.0, 0.0));
     let forward = cgmath::vec4((1.0, 0.0, 0.0, 0.0));
-    let rgt = cgmath::vec4((1.0, 0.0, 0.0, 0.0));
-    let up = cgmath::vec4((0.0, 1.0, 0.0, 0.0));
+    let rgt = cgmath::vec4((0.0, 1.0, 0.0, 0.0));
+    let up = cgmath::vec4((0.0, 0.0, 1.0, 0.0));
     let rotation_axis = cgmath::vec3((0.0, 0.0, -1.0));
     let attitude = CameraAttitude::new(origin, forward, rgt, up, rotation_axis);
     let camera = OrthographicCamera::new(frustum, attitude);
@@ -203,7 +203,7 @@ fn test_orthographic_camera_x_axis_view_mat() {
         1.0, 0.0,  0.0,  0.0,
         0.0, 1.0,  0.0,  0.0,
         0.0, 0.0,  1.0,  0.0,
-        0.0, 0.0,  5.0,  1.0
+        0.0, 0.0, -5.0,  1.0
     );
 
     assert_eq!(camera.view_mat, view_mat);
