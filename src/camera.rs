@@ -345,34 +345,6 @@ mod orthographic_camera_tests {
 
 
     #[test]
-    fn test_unit_viewing_volume_projection_matrix_should_be_mirroring_matrix() {
-        let left = -1.0;
-        let right = 1.0;
-        let bottom = -1.0;
-        let top = 1.0;
-        let near = 1.0;
-        let far = -1.0;
-        let frustum = Frustum::new(left, right, bottom, top, near, far);
-
-        let origin = cgmath::vec3((0.0, 0.0, 5.0));
-        let forward = cgmath::vec4((0.0, 0.0, -1.0, 0.0));
-        let right = cgmath::vec4((1.0, 0.0, 0.0, 0.0));
-        let up = cgmath::vec4((0.0, 1.0, 0.0, 0.0));
-        let rotation_axis = cgmath::vec3((0.0, 0.0, -1.0));
-        let attitude = CameraAttitude::new(origin, forward, right, up, rotation_axis);
-        let camera = OrthographicCamera::new(frustum, attitude);
-
-        let mirror_mat = Matrix4::new(
-            1.0, 0.0,  0.0, 0.0,
-            0.0, 1.0,  0.0, 0.0,
-            0.0, 0.0, -1.0, 0.0,
-            0.0, 0.0,  0.0, 1.0
-        );
-
-        assert_eq!(camera.proj_mat, mirror_mat);
-    }
-
-    #[test]
     fn test_orthographic_camera_should_map_points_inside_frustum_inside_canonical_view_volume() {
         let left = -4.0;
         let right = 4.0;
@@ -457,7 +429,6 @@ mod perspective_camera_tests {
         }
     }
 
-    /*
     #[test]
     fn test_perspective_camera_model() {
         let left = -4.0;
@@ -484,7 +455,7 @@ mod perspective_camera_tests {
 
         assert!(cvv.contains(p_cvv), "p_wor = {}; p_cam = {}; p_cvv = {}", p_wor, p_cam, p_cvv);
     }
-    */
+
 
     #[test]
     fn test_fov_and_frustum_should_yield_same_camera_model() {
