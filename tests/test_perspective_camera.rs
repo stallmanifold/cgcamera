@@ -69,7 +69,7 @@ fn test_perspective_camera_z_axis_proj_mat() {
     let proj_mat = Matrix4::new(
         1.0,  0.0,  0.0,  0.0,
         0.0,  1.0,  0.0,  0.0,
-        0.0,  0.0,  1.0,  0.0,
+        0.0,  0.0,  0.0,  1.0,
         0.0,  0.0, -4.0,  0.0
     );
 
