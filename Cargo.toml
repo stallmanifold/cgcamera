@@ -1,6 +1,6 @@
 [package]
 name = "cgcamera"
-version = "0.2.5"
+version = "0.2.6"
 authors = ["LambdaXymox <lambda.xymox@gmail.com>"]
 edition = "2018"
 description = "A library defining camera models for use in real-time computer graphics applications."
